@@ -183,6 +183,12 @@ fn build_sasl(metadata: &Metadata) {
                 .join("lib")
                 .display(),
         );
+        println!(
+            "cargo:rustc-link-search=native={}",
+            PathBuf::from(env::var("DEP_KRB5_SRC_ROOT").unwrap())
+                .join("lib64")
+                .display(),
+        );
         println!("cargo:rustc-link-lib=static=gssapi_krb5");
         println!("cargo:rustc-link-lib=static=krb5");
         println!("cargo:rustc-link-lib=static=k5crypto");
